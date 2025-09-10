@@ -1,14 +1,21 @@
 const express = require('express');
-const mongoose = require('mongoose');
+const connectDB = require('./utils/db');
+const authRoutes = require('./routes/authRoutes');
+
+// Carica le variabili d'ambiente
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Connessione al database MongoDB
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('Connesso al database MongoDB'))
-  .catch(err => console.error('Errore di connessione:', err));
+// Connessione al database
+connectDB();
+
+// Middleware per il parsing del body JSON
+app.use(express.json());
+
+// Definizione delle route
+app.use('/api/auth', authRoutes);
 
 app.get('/', (req, res) => {
   res.send('Server backend di IronLog in esecuzione!');
