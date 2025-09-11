@@ -1,6 +1,7 @@
 const express = require('express');
 const connectDB = require('./utils/db');
 const authRoutes = require('./routes/authRoutes');
+const cors = require('cors');
 
 // Carica le variabili d'ambiente
 require('dotenv').config();
@@ -11,8 +12,9 @@ const PORT = process.env.PORT || 5000;
 // Connessione al database
 connectDB();
 
-// Middleware per il parsing del body JSON
-app.use(express.json());
+// Middleware 
+app.use(express.json()); // Middleware per il parsing del body JSON
+app.use(cors()); // Middleware CORS per permettere richieste dal frontend
 
 // Definizione delle route
 app.use('/api/auth', authRoutes);
