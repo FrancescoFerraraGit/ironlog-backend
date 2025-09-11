@@ -13,8 +13,8 @@ const PORT = process.env.PORT || 5000;
 connectDB();
 
 // Middleware 
-app.use(express.json()); // Middleware per il parsing del body JSON
-app.use(cors()); // Middleware CORS per permettere richieste dal frontend
+app.use(express.json()); //Middleware per il parsing del body JSON
+app.use(cors()); //Middleware CORS per permettere richieste dal frontend
 
 // Definizione delle route
 app.use('/api/auth', authRoutes);
