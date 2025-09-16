@@ -21,7 +21,7 @@ const registerUser = async (req, res) => {
       return res.status(400).json({message: 'Utente già creato'});
     }
 
-    const user = User.create({
+    const user = await User.create({
       username,
       email,
       password,
